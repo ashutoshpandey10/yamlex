@@ -1,0 +1,24 @@
+---
+ - hosts: mywebserver
+   become: yes
+   tasks:
+    -  name: http installation
+       dnf:
+          name: "{{redhatweb}}"
+          state: present
+       when: ansible_os_family=='RedHat'
+    -  name: service http installation
+       service:
+          name: "{{redhatweb}}"
+          state: start
+       when: ansible_os_family=='RedHat'
+    -  name: http installation
+       apt:
+          name: "{{debianweb}}"
+          state: present
+       when: ansible_os_family=='Debian'
+    -  name: service apache installation
+       service:
+          name: "{{debianweb}}"
+          state: start
+       when: ansible_os_family=='Debian'
