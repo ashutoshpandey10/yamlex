@@ -10,7 +10,7 @@
     -  name: service http installation
        service:
           name: "{{redhatweb}}"
-          state: start
+          state: started
        when: ansible_os_family=="RedHat"
     -  name: http installation
        apt:
@@ -20,5 +20,5 @@
     -  name: service apache installation
        service:
           name: "{{debianweb}}"
-          state: start
+          state: started
        when: ansible_os_family=="Debian"
